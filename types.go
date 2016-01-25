@@ -3,11 +3,11 @@ package main
 import "github.com/fsouza/go-dockerclient"
 
 // message sent to us by the javascript client
-type Message struct {
+type message struct {
 	Status string `json:"status"`
 }
 
-type InitData struct {
+type initData struct {
 	Status     string
 	Containers []docker.APIContainers
 }

@@ -70,9 +70,9 @@ var (
 	}
 )
 
-func validateMessage(data []byte) (Message, error) {
+func validateMessage(data []byte) (message, error) {
 
-	var msg Message
+	var msg message
 
 	log.Info(string(data[:]))
 	log.Infof("%#v %T %#q`", data, data, data)
@@ -127,7 +127,7 @@ func handleWebsocket(w http.ResponseWriter, r *http.Request) {
 
 			case "init":
 
-				var data InitData
+				var data initData
 
 				client, err := docker.NewClientFromEnv()
 				if err != nil {
