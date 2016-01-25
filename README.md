@@ -38,15 +38,10 @@ GLOBAL OPTIONS:
 
 ## Features
 
-### Completed
-
-* Connecting front-end to back via WebSockets
-* Basic CLI options setup
-* Rendering of Docker containers in browser
-
-### Not Yet Completed
-
-* Connect simultaneously to multiple daemons based on Docker Machine directory
-* Setup goroutine to ping daemons and update dashboard via websockets
-* Allow addition of new Daemon endpoints from browser
-* Allow stop/start/shutdown of images from browser
+- [x] Connecting front-end to back via WebSockets
+- [x] Basic CLI options setup
+- [x] Rendering of Docker containers in browser
+- [ ] Connect simultaneously to multiple daemons based on Docker Machine directory
+- [ ] Setup goroutine to ping daemons and update dashboard via websockets
+- [ ] Allow addition of new Daemon endpoints from browser
+- [ ] Allow stop/start/shutdown of images from browser
