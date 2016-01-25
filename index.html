@@ -1,0 +1,62 @@
+<html>
+
+<head>
+
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300italic,700,700italic">
+
+  <!-- CSS Reset -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.3/normalize.css">
+
+  <!-- Milligram CSS minified -->
+  <link rel="stylesheet" href="milligram.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <h1>Gorgeous George</h1>
+    </div>
+    <div class="row">
+
+      <div class="column">
+        <container-list></container-list>
+      </div>
+
+    </div>
+  </div>
+
+  <script type="riot/tag" src="container-list.tag"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/riot/2.3.13/riot+compiler.min.js"></script>
+
+  <script type="text/javascript" src="/reconnecting-websocket.js"></script>
+  <script type="text/javascript">
+    "use strict"
+    const ws = new ReconnectingWebSocket(`ws://localhost${location.port != 80 ? ":" + location.port : ""}/ws`);
+    ws.onopen = () => {
+      const init_message = JSON.stringify({
+        status: 'init'
+      });
+      console.log("SENDING => " + JSON.stringify(init_message))
+      ws.send(
+        init_message
+      );
+    }
+    ws.onmessage = (event) => {
+      let data = JSON.parse(event.data)
+      console.log(data.Status);
+      switch (data.Status){
+        case "initResponse":
+          console.log("INIT-RESPONSE")
+          riot.mount("container-list", {
+            title: "Container List",
+            containers: data.Containers,
+          });
+          break
+      }
+      console.log(JSON.parse(event.data));
+    }
+  </script>
+</body>
+
+</html>
